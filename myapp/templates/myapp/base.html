@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #87CEEB;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #FF00FF;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        nav {
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'myapp:index' %}">Learning Log</a>
+            <a href="{% url 'myapp:topics' %}">Topics</a>
+            {% if user.is_authenticated %}
+                Hello, {{ user.username }}. <a href="{% url 'users:logout' %}">Log out</a>
+            {% else %}
+                <a href="{% url 'users:register' %}">Register</a> -
+                <a href="{% url 'users:login' %}">Log in</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <div class="content">
+        <!-- Your webpage content goes here -->
+        {% block content %}{% endblock content %}
+    </div>
+</body>
+</html>
