@@ -7,6 +7,9 @@ from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
 
 
+def about(request):
+    return render(request, "myapp/about.html", {})
+
 # Create your views here.
 @login_required()
 def index(request):
